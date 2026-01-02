@@ -440,10 +440,10 @@ export default function YouTubePlayer({
       const time = onTimeUpdate ? player.getCurrentTime?.() : undefined;
       const duration = onDurationUpdate ? player.getDuration?.() : undefined;
       if (typeof time === "number" && Number.isFinite(time)) {
-        onTimeUpdate(time);
+        onTimeUpdate?.(time);
       }
       if (typeof duration === "number" && Number.isFinite(duration)) {
-        onDurationUpdate(duration);
+        onDurationUpdate?.(duration);
       }
     }, 500);
 
