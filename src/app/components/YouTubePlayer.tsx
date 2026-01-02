@@ -349,7 +349,7 @@ export default function YouTubePlayer({
         window.cancelAnimationFrame(rafId);
       }
     };
-  }, [apiReady, status, videoId]);
+  }, [apiReady, onStateChange, status, videoId]);
 
   useEffect(() => {
     return () => {
@@ -397,7 +397,7 @@ export default function YouTubePlayer({
       setStatus("error");
       setPlayerError("YouTube player did not expose loadVideoById.");
     }
-  }, [videoId, status, playbackMode, playerReady]);
+  }, [videoId, status, playbackMode, playerReady, isTransportPlaying]);
 
   useEffect(() => {
     if (!youtubePlayerRef.current || status !== "ready" || !playerReady) {

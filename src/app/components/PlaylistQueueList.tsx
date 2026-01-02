@@ -95,7 +95,7 @@ export default function PlaylistQueueList({
               disabled={runNextDisabled}
               type="button"
             >
-              What's Next
+              What&apos;s Next
             </button>
           ) : null}
           <button

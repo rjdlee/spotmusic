@@ -251,6 +251,7 @@ export default function PlaybackDashboard() {
 
     return () => controller.abort();
   }, [
+    locationSensor.coords,
     locationSensor.status,
     locationSensor.coords?.latitude,
     locationSensor.coords?.longitude,
@@ -337,6 +338,7 @@ export default function PlaybackDashboard() {
       }
     };
   }, [
+    microphoneSensor,
     microphoneSensor.getWaveformData,
     microphoneSensor.status,
     microphoneSensor.waveformSize,
@@ -801,6 +803,7 @@ export default function PlaybackDashboard() {
     }
   }, [
     apiKeys.geminiApiKey,
+    apiKeys.llmModel,
     apiKeys.youtubeApiKey,
     hasRequiredKeys,
     llmSignals,
@@ -849,8 +852,10 @@ export default function PlaybackDashboard() {
   }, [
     canAutoRunEvaluation,
     handleLlmEvaluation,
+    hasRequiredKeys,
     lastQueueItem?.videoId,
     llmStatus,
+    onboardingComplete,
     queueHasItems,
     remainingQueueCount,
     youtubeVideoId,

@@ -59,7 +59,7 @@ export default function Slider({
         </div>
       );
     });
-  }, [max, min, step]);
+  }, []);
 
   return (
     <label className="flex flex-col items-center gap-4 p-4 text-sm text-[color:var(--mix-ink-soft)]">
