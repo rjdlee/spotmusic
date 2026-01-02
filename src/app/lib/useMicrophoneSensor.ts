@@ -16,7 +16,7 @@ type MicrophoneSensorState = {
   error: string | null;
   requestAccess: () => Promise<void>;
   stop: () => void;
-  getWaveformData: (target: Uint8Array) => boolean;
+  getWaveformData: (target: Uint8Array<ArrayBuffer>) => boolean;
 };
 
 const RMS_SAMPLE_SIZE = 2048;
@@ -293,7 +293,7 @@ export const useMicrophoneSensor = (): MicrophoneSensorState => {
 
   useEffect(() => stop, [stop]);
 
-  const getWaveformData = useCallback((target: Uint8Array) => {
+  const getWaveformData = useCallback((target: Uint8Array<ArrayBuffer>) => {
     const analyser = analyserRef.current;
     if (!analyser || target.length < analyser.fftSize) {
       return false;
