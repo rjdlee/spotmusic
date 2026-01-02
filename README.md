@@ -28,3 +28,7 @@ An experimental Next.js app that explores context-aware music playback. It colle
 * @google/genai (Gemini)
 * YouTube Data API + IFrame Player API
 * TanStack Query + Radix UI (supporting UI/async state)
+
+## Demo
+
+[/Users/richardlee/src/spotmusic/docs/product-screenshot.png](/Users/richardlee/src/spotmusic/docs/product-screenshot.png)
