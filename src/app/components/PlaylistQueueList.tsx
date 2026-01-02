@@ -60,7 +60,6 @@ export default function PlaylistQueueList({
       : currentIndex >= 0 && currentIndex < items.length
       ? (currentIndex + 1) % items.length
       : 0;
-  const showWhatsNext = process.env.NODE_ENV === "development";
 
   useEffect(() => {
     if (!activeItemRef.current) {
@@ -88,16 +87,14 @@ export default function PlaylistQueueList({
         </div>
         <div className="flex flex-wrap items-center gap-3">
           <span className="mixer-chip">{queueLabel}</span>
-          {showWhatsNext ? (
-            <button
-              className="mixer-button px-4 py-1 text-xs disabled:opacity-60"
-              onClick={onRunNext}
-              disabled={runNextDisabled}
-              type="button"
-            >
-              What&apos;s Next
-            </button>
-          ) : null}
+          <button
+            className="mixer-button px-4 py-1 text-xs disabled:opacity-60"
+            onClick={onRunNext}
+            disabled={runNextDisabled}
+            type="button"
+          >
+            What&apos;s Next
+          </button>
           <button
             className="mixer-button flex h-8 w-8 items-center justify-center p-0 text-xs disabled:opacity-60"
             onClick={onClear}
@@ -248,12 +245,10 @@ export default function PlaylistQueueList({
         ) : (
           <div className="flex items-center gap-3 text-sm text-[color:var(--mix-ink-soft)]">
             <span>Queue empty</span>
-            {showWhatsNext ? (
-              <Tooltip
-                content="Tap What's Next to seed upcoming tracks."
-                ariaLabel="Queue empty info"
-              />
-            ) : null}
+            <Tooltip
+              content="Tap What's Next to seed upcoming tracks."
+              ariaLabel="Queue empty info"
+            />
           </div>
         )}
       </div>

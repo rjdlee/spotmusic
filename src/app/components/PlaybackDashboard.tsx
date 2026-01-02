@@ -120,6 +120,7 @@ export default function PlaybackDashboard() {
   const [queueStatus, setQueueStatus] = useState<AsyncStatus>("idle");
   const queueLoadedRef = useRef(false);
   const playIntentRef = useRef<number | null>(null);
+  const initialSeedTriggeredRef = useRef(false);
   const [apiKeys, setApiKeys] = useState<ApiKeys>({
     geminiApiKey: "",
     youtubeApiKey: "",
@@ -809,6 +810,44 @@ export default function PlaybackDashboard() {
     llmSignals,
     onboardingComplete,
     userProfile,
+  ]);
+
+  useEffect(() => {
+    if (initialSeedTriggeredRef.current) {
+      return;
+    }
+
+    if (!localStorageReady || !serverConfigReady) {
+      return;
+    }
+
+    if (!queueLoadedRef.current) {
+      return;
+    }
+
+    if (!onboardingComplete || !hasRequiredKeys) {
+      return;
+    }
+
+    if (playlistQueue.length > 0) {
+      initialSeedTriggeredRef.current = true;
+      return;
+    }
+
+    if (llmStatus === "loading") {
+      return;
+    }
+
+    initialSeedTriggeredRef.current = true;
+    handleLlmEvaluation();
+  }, [
+    handleLlmEvaluation,
+    hasRequiredKeys,
+    llmStatus,
+    localStorageReady,
+    onboardingComplete,
+    playlistQueue.length,
+    serverConfigReady,
   ]);
 
   const remainingQueueCount = queueHasItems
